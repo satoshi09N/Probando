@@ -1,0 +1,246 @@
+/* (renombrado) styles -> styless.css */
+/* ==============================
+   TOKENS (duraciones y curvas)
+=================================*/
+:root{
+  --hold-1: 2000ms;
+  --xfade:  280ms;
+  --pop-in: 220ms;
+  --pop-out:160ms;
+  --ease-out: cubic-bezier(.2,.8,.2,1);
+  --ease-in:  cubic-bezier(.4,0,1,1);
+  --spring:   cubic-bezier(.16,1,.3,1);
+  --elev-low:  0 8px 30px rgba(0,0,0,.18);
+  --elev-high: 0 20px 56px rgba(0,0,0,.26);
+  --issuer-w: 500px;
+  --issuer-minh: 620px;
+  --issuer-pad: 36px;
+  --issuer-radius: 16px;
+  --issuer-ring: 56px;
+  --visa-size: 46px;
+  --mc-disc: 34px;
+  --issuer-title: 16px;
+  --issuer-caption: 12px;
+  --brand-w:171px;
+  --err-bg:   #fee2e2;
+  --err-brd:  #fca5a5;
+  --err-red:  #dc2626;
+  --err-red2: #ef4444;
+}
+
+*,*::before,*::after{ box-sizing:border-box }
+html,body{ height:100% }
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  color:#1b1b1b;
+  background-image:url("banner.svg");
+  background-size:cover; background-position:center; background-repeat:no-repeat;
+}
+.hidden{ display:none !important }
+
+.overlay{
+  position:fixed; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.45);
+  -webkit-backdrop-filter:saturate(120%) blur(2px);
+  backdrop-filter:saturate(120%) blur(2px);
+  z-index:9999; opacity:1; transition:opacity var(--xfade) var(--ease-out);
+}
+.overlay.is-hide{ opacity:0; pointer-events:none }
+.overlay.is-gone{ display:none }
+
+.motion{ transform-origin:50% 55%; will-change:transform,opacity,filter }
+.motion-in { animation:popIn var(--pop-in) var(--spring) both }
+.motion-out{ animation:popOut var(--pop-out) var(--ease-in) both }
+
+@keyframes popIn{
+  from{ opacity:0; transform:translateY(16px) scale(.965); filter:blur(2px) }
+  to  { opacity:1; transform:none;                 filter:blur(0) }
+}
+@keyframes popOut{
+  from{ opacity:1; transform:none;                 filter:blur(0) }
+  to  { opacity:0; transform:translateY(8px) scale(.985); filter:blur(2px) }
+}
+
+.card-lite{
+  width:min(560px, 92vw);
+  background:#fff; border-radius:12px; padding:32px 28px;
+  text-align:center; box-shadow:var(--elev-low);
+}
+.title{ font-weight:700; font-size:20px; margin:6px 0 2px }
+.subtle{ color:#6b7280; font-size:14px; margin:4px 0 8px }
+.divider{ height:1px; background:#e5e7eb; margin:12px 0 10px }
+.hints{ list-style:disc; text-align:left; color:#6b7280; font-size:12px; padding-left:18px; margin:0 auto; max-width:90% }
+.hints li{ margin:.25rem 0 }
+
+.ring{ width:42px; height:42px; margin:10px auto 18px; display:block }
+.dots::after{ content:""; animation:dotz 1.1s steps(3,end) infinite }
+@keyframes dotz{ 0%{content:""} 33%{content:"."} 66%{content:".."} 100%{content:"..."} }
+
+[data-anim]{ opacity:0; transform:translateY(6px) }
+.stagger-on [data-anim]{ animation:fadeUp var(--pop-in) var(--ease-out) forwards }
+.stagger-on [data-anim="1"]{ animation-delay: 60ms }
+.stagger-on [data-anim="2"]{ animation-delay:120ms }
+.stagger-on [data-anim="3"]{ animation-delay:180ms }
+.stagger-on [data-anim="4"]{ animation-delay:240ms }
+@keyframes fadeUp{ to{ opacity:1; transform:none } }
+
+.card-issuer{
+  width:min(var(--issuer-w), 92vw);
+  min-height:var(--issuer-minh);
+  background:#fff; border-radius:var(--issuer-radius);
+  box-shadow:var(--elev-high);
+  padding:var(--issuer-pad);
+  display:grid; place-items:center;
+}
+.issuer-body{ display:grid; place-items:center; text-align:center; row-gap:10px; width:100% }
+.ring-brand{ width:var(--issuer-ring); height:var(--issuer-ring); margin:0 auto 12px; display:block }
+.brand-visa{
+  font-weight:900; font-size:var(--visa-size);
+  letter-spacing:1.5px; color:#1a4dd9; line-height:1; margin-top:2px
+}
+.brand-mc{ display:grid; justify-items:center; row-gap:8px }
+.mc-icon{ position:relative; width:calc(var(--mc-disc)*1.6); height:var(--mc-disc) }
+.mc-icon::before,.mc-icon::after{
+  content:""; position:absolute; top:0; width:var(--mc-disc); height:var(--mc-disc); border-radius:50%
+}
+.mc-icon::before{ left:0;  background:#eb001b }
+.mc-icon::after{ right:0; background:#f79e1b; mix-blend-mode:multiply }
+.mc-text{ font-size:21px; color:#1f2937; font-weight:800; letter-spacing:.2px }
+.brand-title{ font-size:var(--issuer-title); font-weight:800; color:#2b2b2b; margin-top:2px }
+.brand-caption{ font-size:var(--issuer-caption); color:#6b7280; max-width:360px; margin:0 auto }
+.brand-pop{ animation:brandPop var(--pop-in) var(--spring) both }
+@keyframes brandPop{
+  from{ opacity:0; transform:translateY(8px) scale(.97) }
+  to  { opacity:1; transform:none }
+}
+
+.stage-main{ display:none; min-height:100vh; padding-bottom:3.4rem; place-items:center }
+.stage-main.is-on{ display:grid }
+
+.card{
+  width:min(720px, 92vw);
+  background:#fff; border:1px solid #e5e7eb; border-radius:12px;
+  box-shadow:var(--elev-low); padding:32px 36px;
+  opacity:0; transform:translateY(18px) scale(.985);
+  transition:box-shadow 420ms var(--spring), filter 420ms var(--spring);
+  animation:cardIn 420ms var(--spring) forwards;
+}
+.stage-main.is-on .card{ box-shadow:0 14px 44px rgba(0,0,0,.22) }
+@keyframes cardIn{
+  from{ opacity:0; transform:translateY(18px) scale(.985); filter:blur(2px) }
+  70% { opacity:1; transform:translateY(-2px) scale(1.005) }
+  to  { opacity:1; transform:translateY(0)    scale(1);    filter:blur(0) }
+}
+
+.head{ display:flex; flex-direction:column; gap:12px }
+.brand{ align-self:flex-start; line-height:1 }
+.brand img{ width:var(--brand-w); height:auto; display:block }
+.title-err{ font-weight:700; font-size:22px; text-align:center; color:#1b1b1b }
+.sub-err{ text-align:center; font-size:13px; color:#6b7280; margin-top:6px }
+
+.status{ display:flex; justify-content:center; margin:14px 0 8px }
+.err-badge{
+  width:44px; height:44px; border-radius:50%;
+  background:var(--err-bg); border:1px solid var(--err-brd);
+  display:grid; place-items:center; position:relative; overflow:visible;
+  animation:
+    errPopIn var(--pop-in) var(--spring) both,
+    errBreath 3400ms ease-in-out 1400ms infinite both;
+}
+.err-badge::after{
+  content:""; position:absolute; inset:-1px; border-radius:50%;
+  box-shadow:0 0 0 0 rgba(220,38,38,.0); opacity:0; pointer-events:none;
+  transform:scale(1);
+  animation: errRipple 820ms var(--ease-out) 700ms 1 both;
+}
+
+.err-svg{ width:24px; height:24px; display:block }
+.err-bg { stroke:var(--err-brd); opacity:.65; }
+
+.err-ring{
+  stroke:var(--err-brd);
+  stroke-linecap:round;
+  stroke-dasharray:150;
+  stroke-dashoffset:150;
+  animation: errRingDraw 320ms var(--ease-out) 220ms forwards;
+}
+.err-spark{
+  stroke:#f87171;
+  stroke-linecap:round;
+  stroke-dasharray:6 12;
+  stroke-dashoffset:0;
+  opacity:0;
+  animation:
+    errSparkDash 600ms var(--ease-out) 240ms forwards,
+    errSparkFade 600ms var(--ease-in) 420ms forwards;
+}
+
+.err-line{
+  stroke:var(--err-red);
+  stroke-linecap:round;
+  stroke-dasharray:28;
+  stroke-dashoffset:28;
+}
+.err-x1{
+  animation:
+    errXDraw 160ms var(--ease-out) 620ms forwards,
+    errXTint 120ms var(--ease-out) 780ms forwards,
+    errXSettle 180ms var(--spring) 860ms forwards;
+}
+.err-x2{
+  animation:
+    errXDraw 160ms var(--ease-out) 680ms forwards,
+    errXTint 120ms var(--ease-out) 840ms forwards,
+    errXSettle 180ms var(--spring) 920ms forwards;
+}
+
+.intro{ font-size:14px; text-align:center; margin-bottom:12px; color:#4b5563 }
+.callout{ border:1px solid transparent; border-radius:10px; padding:12px 14px; margin:12px 0 0 }
+.callout h3{ margin:0 0 6px; font-size:14px; font-weight:600 }
+.callout ul{ margin:0; padding-left:18px; font-size:13px; line-height:1.55 }
+.callout li{ margin:.25rem 0 }
+.error{ background:#FEF2F2; border-color:#FCA5A5 }
+.help{  background:#EFF6FF; border-color:#93C5FD }
+.fins{ display:flex; justify-content:flex-end; margin-top:28px }
+.btn{ display:inline-block; padding:10px 20px; background:#0067b8; color:#fff; text-decoration:none; border-radius:4px; font-weight:600; font-size:14px; transition:transform 120ms var(--spring), filter 120ms var(--ease-out) }
+.btn:hover{ filter:brightness(1.05) }
+.btn:active{ transform:translateY(.5px) }
+
+.sefue{
+  position:fixed; left:0; right:0; bottom:0; height:2.8rem;
+  background:rgba(0,0,0,.6); color:#fff; font-size:12px;
+  display:flex; align-items:center; gap:1rem; padding:0 1rem; justify-content:flex-end; z-index:10000;
+}
+.sefue p{ margin:0; opacity:.9 }
+
+@keyframes spin { to { transform: rotate(360deg) } }
+.ring .sweep{ transform-origin:22px 22px; animation: spin 1.15s linear infinite; }
+.ring-brand #brand-sweep{ transform-origin:22px 22px; animation: spin 1.15s linear infinite; }
+
+@keyframes errPopIn{ from{ opacity:0; transform:translateY(6px) scale(.92) } 70% { opacity:1; transform:translateY(0) scale(1.04) } to { opacity:1; transform:none } }
+@keyframes errBreath{ 0%{ transform:scale(1); box-shadow:0 0 0 0 rgba(220,38,38,.0) } 36%{ transform:scale(1.015); box-shadow:0 0 0 10px rgba(220,38,38,.06) } 100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(220,38,38,.0) } }
+@keyframes errRingDraw{ from{ stroke-dashoffset:150 } to { stroke-dashoffset:0 } }
+@keyframes errSparkDash{ 0%{ opacity:.0; stroke-dashoffset:0 } 15%{ opacity:.85 } 100%{ opacity:.85; stroke-dashoffset:-200 } }
+@keyframes errSparkFade{ from{ opacity:.85 } to{ opacity:0 } }
+@keyframes errXDraw{ from{ stroke-dashoffset:28 } to { stroke-dashoffset:0 } }
+@keyframes errXTint{ from{ stroke:var(--err-red2) } to { stroke:var(--err-red) } }
+@keyframes errXSettle{ 0%{ transform:scale(1.02) } 100%{ transform:scale(1) } }
+@keyframes errRipple{ 0%{ opacity:.18; box-shadow:0 0 0 0 rgba(220,38,38,.18); transform:scale(1) } 70%{ opacity:.08; box-shadow:0 0 0 16px rgba(220,38,38,.08); transform:scale(1.22) } 100%{ opacity:0; box-shadow:0 0 0 26px rgba(220,38,38,0); transform:scale(1.36) } }
+
+@media (prefers-reduced-motion: reduce){
+  .overlay, .card, .motion, .brand-pop, .stagger-on [data-anim],
+  .err-badge, .err-ring, .err-line, .err-spark, .err-badge::after{
+    animation:none !important; transition:none !important; filter:none !important;
+  }
+  .motion-in,.motion-out{ animation:none !important }
+}
+
+/* ✅ Ocultar fondo en celular y tablet (solo PC mantiene el fondo) */
+@media (max-width: 1024px){
+  body{
+    background-image: none !important;
+    background: #ffffff !important;
+  }
+}
